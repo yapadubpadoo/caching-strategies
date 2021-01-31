@@ -1,4 +1,4 @@
-from core.console_logger import ConsoleLogger
+
 import sys
 import pathlib
 path_to_file = pathlib.Path(__file__).parent.absolute()
@@ -7,6 +7,7 @@ sys.path.append(f"{path_to_file}/../../")
 from core.redis_cache import RedisCache
 from core.product_repo import ProductRepo
 from core.mysql_db import ProductDB
+from core.console_logger import ConsoleLogger
 import pymysql
 import redis
 
@@ -26,6 +27,7 @@ logger = ConsoleLogger()
 
 product_repo = ProductRepo(product_db, cache, logger)
 product_id = product_repo.save({"name": "Gundum", "price": 10.17})
-print("ID:", product_id, )
-print("Get product 1st attempt:", product_repo.get_by_id(product_id))
-print("Get product 2nd attempt:", product_repo.get_by_id(product_id))
+logger.info("[Main] ID:", product_id, )
+logger.info("[Main] Get product 1st attempt:", product_repo.get_by_id(product_id))
+logger.info("[Main] Get product 2nd attempt:", product_repo.get_by_id(product_id))
+logger.info("Done.")
