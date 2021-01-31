@@ -37,9 +37,9 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/products/{product_id}")
-def read_item(product_id: int, q: Optional[str] = None):
+def get_product(product_id: int, q: Optional[str] = None):
     try:
-        product = product_repo.get_by_id(id=product_id)
+        product = product_repo.get_by_id(product_id)
         return product
     except Exception as e: 
         raise HTTPException(status_code=404, detail=str(e))
